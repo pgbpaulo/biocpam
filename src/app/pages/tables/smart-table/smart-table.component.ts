@@ -30,29 +30,49 @@ export class SmartTableComponent {
       confirmDelete: true,
     },
     columns: {
-      id: {
-        title: 'ID',
-        type: 'number',
-      },
-      firstName: {
-        title: 'First Name',
+      nome: {
+        title: 'Nome',
         type: 'string',
       },
-      lastName: {
-        title: 'Last Name',
+      end: {
+        title: 'Endereço',
         type: 'string',
       },
-      username: {
-        title: 'Username',
+      bairro: {
+        title: 'Bairro',
         type: 'string',
       },
-      email: {
-        title: 'E-mail',
+      cidade: {
+        title: 'Cidade',
         type: 'string',
       },
-      age: {
-        title: 'Age',
-        type: 'number',
+      estado: {
+        title: 'Estado',
+        type: 'string',
+      },
+      cep: {
+        title: 'CEP',
+        type: 'string',
+      },
+      fone1: {
+        title: 'Fone 1',
+        type: 'string',
+      },
+      fone2: {
+        title: 'Fone 2',
+        type: 'string',
+      },
+      CPF: {
+        title: 'CPF',
+        type: 'string',
+      },
+      IE: {
+        title: 'IE',
+        type: 'string',
+      },
+      hist: {
+        title: 'Histórico',
+        type: 'string',
       },
     },
   };
@@ -65,7 +85,7 @@ export class SmartTableComponent {
   }
 
   onDeleteConfirm(event): void {
-    if (window.confirm('Are you sure you want to delete?')) {
+    if (window.confirm('Tem certeza que deseja excluir?')) {
       event.confirm.resolve();
     } else {
       event.confirm.reject();
