@@ -5,19 +5,11 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "node",
+            "type": "chrome",
             "request": "launch",
-            "name": "Launch Program",
-            "program": "${workspaceFolder}/app.js"
-        },
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "Launch Program",
-            "program": "${workspaceFolder}\\app\\@core\\mock\\smart-table.service.ts",
-            "outFiles": [
-                "${workspaceFolder}/**/*.js"
-            ]
+            "name": "Launch Chrome against localhost",
+            "url": "http://localhost:4200",
+            "webRoot": "${workspaceFolder}"
         }
     ]
 }

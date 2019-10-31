@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 
 import { SmartTableData } from '../../../@core/data/smart-table';
+import { ClientsService } from '../clients.service';
 
 @Component({
   selector: 'ngx-smart-table',
@@ -19,11 +20,13 @@ export class SmartTableComponent {
       addButtonContent: '<i class="nb-plus"></i>',
       createButtonContent: '<i class="nb-checkmark"></i>',
       cancelButtonContent: '<i class="nb-close"></i>',
+      confirmCreate: true,
     },
     edit: {
       editButtonContent: '<i class="nb-edit"></i>',
       saveButtonContent: '<i class="nb-checkmark"></i>',
       cancelButtonContent: '<i class="nb-close"></i>',
+      confirmSave: true 
     },
     delete: {
       deleteButtonContent: '<i class="nb-trash"></i>',
@@ -53,19 +56,19 @@ export class SmartTableComponent {
       cep: {
         title: 'CEP',
         type: 'string',
-      },
+      }, 
       fone1: {
         title: 'Fone 1',
         type: 'string',
-      },
+      }, 
       fone2: {
         title: 'Fone 2',
         type: 'string',
-      },
-      CPF: {
+      }, 
+      cpf: {
         title: 'CPF',
         type: 'string',
-      },
+      }, 
       IE: {
         title: 'IE',
         type: 'string',
@@ -73,22 +76,31 @@ export class SmartTableComponent {
       hist: {
         title: 'Histórico',
         type: 'string',
-      },
+      }
     },
+  
   };
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private service: SmartTableData) {
-    const data = this.service.getData();
-    this.source.load(data);
+  constructor(private service: ClientsService, private clientsService: ClientsService) {
+    let data: any[] = [];
+    this.service.getClients().subscribe(res => {
+      data = res;
+      this.source.load(data);
+    });
   }
 
   onDeleteConfirm(event): void {
-    if (window.confirm('Tem certeza que deseja excluir?')) {
-      event.confirm.resolve();
-    } else {
-      event.confirm.reject();
-    }
+    this.clientsService.deleteClients(event);
   }
+
+  onCreateConfirm(event): void {
+    this.clientsService.postClients(event);
+  }
+
+  onEditConfirm(event): void {
+    this.clientsService.editClients(event);
+  }
+  
 }

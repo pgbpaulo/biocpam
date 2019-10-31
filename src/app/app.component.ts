@@ -6,6 +6,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AnalyticsService } from './@core/utils/analytics.service';
 
+import * as firebase from 'firebase';
+import 'firebase/firestore';
+
+const settings = {timestampsInSnapshots: true};
+
+
 @Component({
   selector: 'ngx-app',
   template: '<router-outlet></router-outlet>',
@@ -17,5 +23,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.analytics.trackPageViews();
+    
   }
 }
